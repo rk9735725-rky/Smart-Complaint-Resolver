@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Complaint Resolver</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icons8-solution-64.png">
+</head>
+<body>
+
+<div class="container">
+  <h2>🧠 Government Complaint Resolver</h2>
+
+  <textarea id="complaintText" placeholder="Type or speak your complaint..."></textarea>
+  <div id="agentStatus">
+  <h3>🤖 AI Agent Status</h3>
+  <ul id="agentSteps"></ul>
+</div>
+
+
+  <button onclick="resolveComplaint()">Resolve Complaint</button>
+  <button onclick="startVoice()">🎙️ Speak Complaint</button>
+
+  <div id="output"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
