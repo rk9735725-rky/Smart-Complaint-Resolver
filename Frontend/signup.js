@@ -1,21 +1,34 @@
-const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const mobile = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+/* Typing Slogan Effect */
+const text = "Empowering Citizens • AI-Driven • Transparent Governance";
+let index = 0;
 
-    if (!name || !email || !mobile || !password || !confirmPassword) {
-        alert("Please fill all fields");
-        return;
+function typeEffect() {
+    if (index < text.length) {
+        document.getElementById("slogan").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 60);
     }
+}
+typeEffect();
 
-    if (password !== confirmPassword) {
-        alert("Passwords do not match");
-        return;
+/* Password Strength */
+function checkStrength() {
+    const pwd = document.getElementById("password").value;
+    const strength = document.getElementById("strength");
+
+    if (pwd.length < 6) {
+        strength.style.color = "red";
+        strength.innerText = "Weak password";
+    } else if (pwd.match(/[A-Z]/) && pwd.match(/[0-9]/)) {
+        strength.style.color = "green";
+        strength.innerText = "Strong password";
+    } else {
+        strength.style.color = "orange";
+        strength.innerText = "Medium password";
     }
+}
 
-    // Success message (optional)
-    alert("Signup successful!");
-
-    // Redirect to signin page
-    window.location.href = "signin.html";
+/* Signup */
+function signup() {
+    alert("Signup Successful! Welcome to Smart Governance 🚀");
+}

@@ -24,8 +24,6 @@ function analyzeComplaint(text) {
   }
 
   return { issue, department, urgency };
-
-
 }
 
 function getSteps() {
@@ -51,7 +49,7 @@ Respected Sir/Madam,
 I would like to report the issue regarding ${data.issue}.
 Kindly take necessary action at the earliest.
 
-Ticket ID: ${ticketId}
+Token ID: ${ticketId}
 
 Thank you.
 `;
@@ -65,16 +63,10 @@ function resolveComplaint() {
     return;
   }
 
-  // Step 1: Understand goal
   const analysis = analyzeComplaint(text);
-
-  // Step 2: Plan steps
   const steps = getSteps();
 
-  // Tool: Ticket generator
   const ticketId = "SC-" + Math.floor(Math.random() * 9000 + 1000);
-
-  // Tool: Letter generator
   const letter = generateLetter(analysis, ticketId);
 
   document.getElementById("output").innerHTML = `
@@ -84,13 +76,12 @@ function resolveComplaint() {
     <p><b>Issue:</b> ${analysis.issue}</p>
     <p><b>Department:</b> ${analysis.department}</p>
     <p><b>Urgency:</b> ${analysis.urgency}</p>
-    <p><b>Ticket ID:</b> ${ticketId}</p>
+    <p><b>Token ID:</b> ${ticketId}</p>
 
     <h4>Generated Complaint Letter</h4>
     <pre>${letter}</pre>
   `;
 
-  // Tool: Memory (localStorage)
   let history = JSON.parse(localStorage.getItem("complaints")) || [];
   history.push({ ticketId, issue: analysis.issue });
   localStorage.setItem("complaints", JSON.stringify(history));
@@ -103,11 +94,12 @@ function startVoice() {
   recognition.lang = "en-IN";
   recognition.start();
 
-  recognition.onresult = function(event) {
+  recognition.onresult = function (event) {
     document.getElementById("complaintText").value =
       event.results[0][0].transcript;
   };
 }
+
 function agentPlan(goal) {
   return [
     { step: "Understand goal", tool: "NLP Analyzer" },
